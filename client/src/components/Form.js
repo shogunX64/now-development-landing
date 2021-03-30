@@ -24,7 +24,7 @@ const Form = () => {
                 <div className="section section-contact-us text-center">
                     <div className="container">
                         <h2 className="title">Contact us</h2>
-                        <p className="description">use the below form for any enquiry and we'll get back to you asap</p>
+                        <p className="description">use the below form for any enquiry and we will get back to you</p>
                         <div className="row">
                             <form onSubmit={onSubmit} className="col-lg-6 text-center col-md-8 ml-auto mr-auto">
                                 <div className="input-group input-lg">
