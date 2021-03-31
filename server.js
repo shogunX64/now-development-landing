@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv')
 const { underline } = require('colors');
 const path = require('path');
+const axios = require('axios')
 
 dotenv.config({ path: './config/config.env'})
 
@@ -34,17 +35,17 @@ app.post('/send', (req, res) =>{
             to: 'hello.nowdevelopment@gmail.com',
             subject: `New customer request`,
             html:   `<h1>Enquiry from:  ${req.body.name}</h1>
-                    <h3>Contact: ${req.body.mail}</h3>
+                    <p>Contact: ${req.body.mail}</p>
                     <p>${req.body.message}</p>`
         };
 
         let mailSender = {
             from: `hello.nowdevelopment@gmail.com`,
             to: `${req.body.mail}`,
-            subject: `NowDevelopment Lab. enqnuiry confiration`,
+            subject: `NowDevelopment Lab. enquiry confirmation`,
             html:   `<h1>Hello ${req.body.name},</h1>
                     <p>We have received your message and we will get to you shortly.
-                    Our normal response time is about 24 hours sincer the request has been received.</p>`
+                    Our normal response time is about 24 hours since the request has been received.</p>`
         };
         
         transporter.sendMail(mailOptions, function(error, info){
@@ -62,7 +63,16 @@ app.post('/send', (req, res) =>{
                 return res.status(200).send(`Email sent: ${info.response}` )
             }
         });
-});
+        axios
+  .post('https://hooks.zapier.com/hooks/catch/9834116/ojtl7dg/',req.body)
+  .then(res => {
+    console.log(`statusCode: ${res.statusCode}`)
+    console.log(res)
+  })
+  .catch(error => {
+    console.error(error)
+  })
+}); 
 
 //serve static assets in production
 if (process.env.NODE_ENV === 'production') {
