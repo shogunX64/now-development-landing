@@ -36,4 +36,4 @@ heroku account: hello.nowdevelopment@gmail.com
 
 1. client side confirmation that the message has been sent
 2. page refresh after the message has been sent
-3. move all passwords to environment variavbles when the project will be live
+3. move all passwords to environment variavbles when the project will be live.
