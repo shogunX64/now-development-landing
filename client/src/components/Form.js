@@ -17,6 +17,11 @@ const Form = () => {
             message
         }
         sendMessage(newMessage);
+        setName('');
+        setMail('');
+        setMessage('');
+
+        
     }
 	return (
         <div className="index-page sidebar-collapse">
