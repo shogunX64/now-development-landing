@@ -32,5 +32,5 @@ https://now-development.herokuapp.com/
 ## Further needed enhancements:
 
 1. client side confirmation that the message has been sent
-2. move all passwords to environment variavbles when the project will be live.
+
 
