@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState' ;
+import AlertContext from '../context/alert/alertContext';
 
 const Form = () => {
     const { sendMessage } = useContext(GlobalContext);
+    const alertContext = useContext(AlertContext)
     
+    const { setAlert } = alertContext;
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
     const [message, setMessage] = useState('')
@@ -16,13 +19,18 @@ const Form = () => {
             mail,
             message
         }
-        sendMessage(newMessage);
+        
+        if(name === '' || mail === '' || message === '' ){
+            setAlert('Please fill in valid data in all fields', 'danger')
+        } else {
+            setAlert('Message sent', 'success')
+            sendMessage(newMessage);
+        }        
         setName('');
         setMail('');
-        setMessage('');
-
-        
+        setMessage('');     
     }
+
 	return (
         <div className="index-page sidebar-collapse">
             <div className="main">
